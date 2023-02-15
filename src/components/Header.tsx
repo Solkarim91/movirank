@@ -10,7 +10,7 @@ export const Header = () => {
 
   return (
     // Header
-    <div className="flex h-20 justify-around py-4 border-b-2 [&>*]:my-auto">
+    <div className="flex h-20 justify-around py-4 border-b-2 bg-white [&>*]:my-auto">
       {/* Logo */}
       <div>MoviRank</div>
       {/* Search */}
@@ -26,21 +26,13 @@ export const Header = () => {
           <MagnifyingGlassIcon className="h-8 w-6" />
         </button>
       </div>
-      {/* Buttons / Icons */}
-      <div className="flex gap-x-12">
-        {/* Sort / Filter */}
-        <div className="flex gap-x-8">
-          <button>Sort</button>
-          <button>Filter</button>
-        </div>
-        <div className="flex gap-x-4">
-          <button>
-            <HeartIcon className="h-8 w-6" />
-          </button>
-          <button>
-            <UserCircleIcon className="h-8 w-6" />
-          </button>
-        </div>
+      <div className="flex gap-x-4">
+        <button>
+          <HeartIcon className="h-8 w-6" />
+        </button>
+        <button>
+          <UserCircleIcon className="h-8 w-6" />
+        </button>
       </div>
     </div>
   );
