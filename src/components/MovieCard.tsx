@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { StarIcon } from "@heroicons/react/24/solid";
+import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { MovieCardItem } from "types/types";
 
 export const MovieCard = ({
@@ -8,21 +10,35 @@ export const MovieCard = ({
   runtime,
   released,
   rating,
+  comments,
   img,
 }: MovieCardItem) => {
   return (
-    <div className="flex flex-col border-2">
-      <div className="relative h-24 w-40 md:h-52 md:w-80 flex-shrink-0">
-        <Image
-          src={img}
-          layout="fill"
-          objectFit="cover"
-          alt="/"
-          className="rounded-2xl"
-        />
+    <div className="flex flex-col justify-between border-2 w-82 h-[46vh]">
+      <div className="flex flex-col">
+        <div className="relative h-60 w-fill flex-shrink-0">
+          <Image src={img} layout="fill" objectFit="cover" alt="/" />
+        </div>
+        <div className="flex flex-col px-3 w-70 gap-y-1">
+          <h4 className="text-base font-bold">{title}</h4>
+          <p className="text-sm h-10 line-clamp-2">{description}</p>
+        </div>
       </div>
-      <div>{title}</div>
-      <div>{description}</div>
+      <div className="flex justify-between items-center mx-3 mb-1">
+        <div className="flex gap-x-3 [&>*]:gap-x-1 [&>*]:flex [&>*]:items-center">
+          <div>
+            <StarIcon className="h-8 w-6 text-yellow-400" />
+            <p className="text-sm">{rating}</p>
+          </div>
+          <div>
+            <ChatBubbleBottomCenterTextIcon className="h-8 w-6" />
+            <p className="text-sm">{comments.length}</p>
+          </div>
+        </div>
+        <button className="text-sm font-semibold text-gray-700 underline">
+          See more
+        </button>
+      </div>
     </div>
   );
 };

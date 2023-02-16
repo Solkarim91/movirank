@@ -2,7 +2,7 @@ import {
   MagnifyingGlassIcon,
   HeartIcon,
   UserCircleIcon,
-} from "@heroicons/react/24/solid";
+} from "@heroicons/react/24/outline";
 import { useState } from "react";
 
 export const Header = () => {

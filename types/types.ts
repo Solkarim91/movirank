@@ -5,5 +5,12 @@ export interface MovieCardItem {
   runtime: number;
   released: number;
   rating: number;
+  comments: Comment[];
   img: string;
+}
+
+export interface Comment {
+  id: string;
+  username: string;
+  comment: string;
 }

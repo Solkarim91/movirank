@@ -6,7 +6,16 @@
     "runtime": 3.21,
     "released": 2003,
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/LOTR-ROTK_qer5yo.jpg",
-    "rating": 1
+    "rating": 1,
+    "comments": [
+      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      {
+        "id": 1,
+        "username": "solkarim91",
+        "comment": "I fell asleep as the film was too long"
+      },
+      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+    ]
   },
   {
     "id": 2,
@@ -15,7 +24,16 @@
     "runtime": 3.14,
     "released": 1997,
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/Titanic_i62e7s.jpg",
-    "rating": 1
+    "rating": 1,
+    "comments": [
+      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      {
+        "id": 1,
+        "username": "solkarim91",
+        "comment": "I fell asleep as the film was too long"
+      },
+      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+    ]
   },
   {
     "id": 3,
@@ -24,7 +42,16 @@
     "runtime": 2.42,
     "released": 2009,
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avatar_gqngv2.jpg",
-    "rating": 1
+    "rating": 1,
+    "comments": [
+      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      {
+        "id": 1,
+        "username": "solkarim91",
+        "comment": "I fell asleep as the film was too long"
+      },
+      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+    ]
   },
   {
     "id": 4,
@@ -33,7 +60,16 @@
     "runtime": 2.18,
     "released": 2015,
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/starwars-forceawakens_exrzqf.jpg",
-    "rating": 1
+    "rating": 1,
+    "comments": [
+      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      {
+        "id": 1,
+        "username": "solkarim91",
+        "comment": "I fell asleep as the film was too long"
+      },
+      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+    ]
   },
   {
     "id": 5,
@@ -42,7 +78,16 @@
     "runtime": 3.01,
     "released": 2019,
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avengers-endgame_jen8hk.jpg",
-    "rating": 1
+    "rating": 1,
+    "comments": [
+      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      {
+        "id": 1,
+        "username": "solkarim91",
+        "comment": "I fell asleep as the film was too long"
+      },
+      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+    ]
   },
   {
     "id": 6,
@@ -51,6 +96,15 @@
     "runtime": 2.04,
     "released": 2015,
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/jurassic-world_qmf3tg.jpg",
-    "rating": 1
+    "rating": 1,
+    "comments": [
+      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      {
+        "id": 1,
+        "username": "solkarim91",
+        "comment": "I fell asleep as the film was too long"
+      },
+      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+    ]
   }
 ]

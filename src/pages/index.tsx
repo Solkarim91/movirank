@@ -21,7 +21,7 @@ export default function Home({ movieData }: any) {
 
       {/* Main */}
       <main className="max-w-7xl h-[100%] mx-auto px-8 bg-white">
-        <div className="text-center pt-16 pb-6">
+        <div className="text-center pt-8 pb-4">
           <h1 className="font-bold text-2xl">All movies</h1>
         </div>
 
@@ -38,7 +38,7 @@ export default function Home({ movieData }: any) {
         </div>
 
         {/* Card grid */}
-        <div className="container m-auto grid grid-cols-3 gap-x-8 gap-y-8 pt-8">
+        <div className="container m-x-auto pb-10 grid grid-cols-3 gap-x-8 gap-y-8 pt-8">
           {movieData?.map(
             ({
               id,
@@ -47,6 +47,7 @@ export default function Home({ movieData }: any) {
               runtime,
               released,
               rating,
+              comments,
               img,
             }: MovieCardItem) => (
               <MovieCard
@@ -57,6 +58,7 @@ export default function Home({ movieData }: any) {
                 runtime={runtime}
                 released={released}
                 rating={rating}
+                comments={comments}
                 img={img}
               />
             )
