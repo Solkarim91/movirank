@@ -4,6 +4,7 @@ import fsPromises from "fs/promises";
 import path from "path";
 import { MovieCardItem } from "types/types";
 import { MovieCard } from "@/components/MovieCard";
+import { Footer } from "@/components/Footer";
 
 export default function Home({ movieData }: any) {
   console.log(movieData);
@@ -65,6 +66,9 @@ export default function Home({ movieData }: any) {
           )}
         </div>
       </main>
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 }
