@@ -14,7 +14,7 @@ export const Header = () => {
       {/* Logo */}
       <div>MoviRank</div>
       {/* Search */}
-      <div className="flex h-10 w-80 border-2 justify-between px-2 rounded-full [&>*]:my-auto">
+      <div className="flex h-10 w-[40%] max-w-[390px] border-2 justify-between px-2 rounded-full [&>*]:my-auto">
         <input
           className="outline-none w-[100%]"
           type="text"

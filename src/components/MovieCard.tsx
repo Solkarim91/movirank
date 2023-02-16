@@ -14,7 +14,7 @@ export const MovieCard = ({
   img,
 }: MovieCardItem) => {
   return (
-    <div className="flex flex-col justify-between border-2 w-82 h-[46vh]">
+    <div className="flex flex-col justify-between border-2 w-82 h-[48vh] sm:h-[48vh] md:h-[48vh] lg:h-[48vh]">
       <div className="flex flex-col">
         <div className="relative h-60 w-fill flex-shrink-0">
           <Image src={img} layout="fill" objectFit="cover" alt="/" />
@@ -35,7 +35,7 @@ export const MovieCard = ({
             <p className="text-sm">{comments.length}</p>
           </div>
         </div>
-        <button className="text-sm font-semibold text-gray-700 underline">
+        <button className="text-sm font-semibold text-gray-500 underline">
           See more
         </button>
       </div>

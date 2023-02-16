@@ -39,7 +39,7 @@ export default function Home({ movieData }: any) {
         </div>
 
         {/* Card grid */}
-        <div className="container m-x-auto pb-10 grid grid-cols-3 gap-x-8 gap-y-8 pt-8">
+        <div className="container m-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 pt-8 pb-10">
           {movieData?.map(
             ({
               id,
