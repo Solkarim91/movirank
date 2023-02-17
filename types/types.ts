@@ -1,9 +1,16 @@
-export interface MovieCardItem {
+export interface MovieItem {
   id: string;
   title: string;
   description: string;
   runtime: number;
   released: number;
+  rating: number;
+  comments: Comment[];
+  img: string;
+}
+export interface MovieCardItem {
+  title: string;
+  description: string;
   rating: number;
   comments: Comment[];
   img: string;

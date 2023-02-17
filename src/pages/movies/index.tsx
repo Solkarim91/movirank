@@ -2,12 +2,27 @@ import Head from "next/head";
 import { Header } from "@/components/Header";
 import fsPromises from "fs/promises";
 import path from "path";
-import { MovieCardItem } from "types/types";
+import { MovieItem } from "types/types";
 import { MovieCard } from "@/components/MovieCard";
 import { Footer } from "@/components/Footer";
+import Link from "next/link";
+import { InferGetStaticPropsType } from "next";
 
-export default function Home({ movieData }: any) {
-  console.log(movieData);
+// Fetching data from the JSON file
+export async function getStaticProps() {
+  const filePath = path.join(process.cwd(), "mock-data.json");
+  const jsonData = await fsPromises.readFile(filePath, "utf-8");
+  const movieData = JSON.parse(jsonData);
+
+  return {
+    props: { movieData },
+  };
+}
+
+export default function Movies({
+  movieData,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  // console.log(movieData);
   return (
     <div className="bg-stone-200">
       <Head>
@@ -39,31 +54,22 @@ export default function Home({ movieData }: any) {
         </div>
 
         {/* Card grid */}
-        <div className="container m-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 pt-8 pb-10">
-          {movieData?.map(
-            ({
-              id,
-              title,
-              description,
-              runtime,
-              released,
-              rating,
-              comments,
-              img,
-            }: MovieCardItem) => (
+        <div className="container m-auto grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8 pt-8 pb-10">
+          {movieData?.map((movie: MovieItem) => (
+            <Link
+              key={movie.id}
+              className="flex flex-col justify-between border-2 cursor-pointer w-82 h-[48vh] sm:h-[48vh] md:h-[48vh] lg:h-[48vh] hover:shadow-md transition duration-200 ease-out"
+              href={`/movies/${movie.id}`}
+            >
               <MovieCard
-                key={id}
-                id={id}
-                title={title}
-                description={description}
-                runtime={runtime}
-                released={released}
-                rating={rating}
-                comments={comments}
-                img={img}
+                title={movie.title}
+                description={movie.description}
+                rating={movie.rating}
+                comments={movie.comments}
+                img={movie.img}
               />
-            )
-          )}
+            </Link>
+          ))}
         </div>
       </main>
 
@@ -71,15 +77,4 @@ export default function Home({ movieData }: any) {
       <Footer />
     </div>
   );
-}
-
-// Fetching data from the JSON file
-export async function getStaticProps() {
-  const filePath = path.join(process.cwd(), "mock-data.json");
-  const jsonData = await fsPromises.readFile(filePath, "utf-8");
-  const movieData = JSON.parse(jsonData);
-
-  return {
-    props: { movieData },
-  };
 }
