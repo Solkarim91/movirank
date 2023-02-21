@@ -1,4 +1,4 @@
-export interface MovieItem {
+export interface Movie {
   id: string;
   title: string;
   description: string;
@@ -8,6 +8,7 @@ export interface MovieItem {
   comments: Comment[];
   img: string;
 }
+
 export interface MovieCardItem {
   title: string;
   description: string;

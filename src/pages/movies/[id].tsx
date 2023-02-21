@@ -1,14 +1,14 @@
 import fsPromises from "fs/promises";
 import { InferGetStaticPropsType } from "next";
 import path from "path";
-import { MovieItem } from "types/types";
+import { Movie } from "../../types/types";
 
 // export const getStaticPaths = async () => {
 //   const filePath = path.join(process.cwd(), "mock-data.json");
 //   const jsonData = await fsPromises.readFile(filePath, "utf-8");
 //   const movieData = JSON.parse(jsonData);
 
-//   const paths = movieData.map((movie: MovieItem) => {
+//   const paths = movieData.map((movie: Movie) => {
 //     return {
 //       params: { id: movie.id.toString() },
 //     };
@@ -26,7 +26,7 @@ export const getStaticPaths = async () => {
   );
   const data = await res.json();
 
-  const paths = data.map((movie: MovieItem) => {
+  const paths = data.map((movie: Movie) => {
     return {
       params: { id: movie.id.toString() },
     };
@@ -51,7 +51,7 @@ export const getStaticProps = async (context: any) => {
   };
 };
 
-export default function Movie({
+export default function MoviePage({
   movie,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   console.log(movie);
