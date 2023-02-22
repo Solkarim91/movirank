@@ -9,13 +9,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/LOTR-ROTK_qer5yo.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -28,13 +28,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/Titanic_i62e7s.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -47,13 +47,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avatar_gqngv2.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -66,13 +66,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/starwars-forceawakens_exrzqf.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -85,13 +85,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avengers-endgame_jen8hk.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -104,13 +104,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676551286/Knocked_up_ga7ssk.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -123,13 +123,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/jurassic-world_qmf3tg.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   },
   {
@@ -142,13 +142,13 @@
     "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676551561/Captain_phillips_nexwsm.jpg",
     "rating": 1,
     "comments": [
-      { "id": 1, "username": "solkarim91", "comment": "Good movie" },
+      { "id": 1, "username": "solkarim91", "text": "Good movie" },
       {
         "id": 1,
         "username": "solkarim91",
-        "comment": "I fell asleep as the film was too long"
+        "text": "I fell asleep as the film was too long"
       },
-      { "id": 1, "username": "solkarim91", "comment": "LOVED this film!" }
+      { "id": 1, "username": "solkarim91", "text": "LOVED this film!" }
     ]
   }
 ]

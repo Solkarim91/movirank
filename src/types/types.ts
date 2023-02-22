@@ -2,6 +2,7 @@ export interface Movie {
   id: string;
   title: string;
   description: string;
+  genre: string[];
   runtime: number;
   released: number;
   rating: number;
@@ -20,5 +21,5 @@ export interface MovieCardItem {
 export interface Comment {
   id: string;
   username: string;
-  comment: string;
+  text: string;
 }

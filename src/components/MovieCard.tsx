@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
-import { MovieCardItem } from "types/types";
+import { MovieCardItem } from "../types/types";
 
 export const MovieCard = (movie: MovieCardItem) => {
   return (

@@ -1,0 +1,47 @@
+enum UserType {
+  ADMIN
+  STANDARD
+}
+
+type Query {
+  GetAllMovies: [Movie!]!
+  GetOneMovie(id: Int!): Movie!
+}
+
+type Mutation {
+  CreateMovie(input: MovieInput!): Movie!
+  DeleteMovie(id: Int!): String!
+  UpdateMovie(id: Int!): String!
+}
+
+type Movie {
+  id: Int!
+  title: String!
+  description: String!
+  genre: String!
+  runtime: Float!
+  released: Int!
+  rating: Int!
+  img: String!
+}
+
+input MovieInput {
+  title: String!
+  description: String!
+  genre: String!
+  runtime: Float!
+  released: Int!
+}
+
+type Comment {
+  id: Int!
+  user: User!
+  text: String!
+}
+
+type User {
+  id: Int!
+  userType: UserType!
+  username: String!
+  email: String!
+}
