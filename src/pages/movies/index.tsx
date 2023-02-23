@@ -22,8 +22,8 @@ export async function getStaticProps() {
 
 // GraphQL query
 const QUERY = gql`
-  query getAllMovies {
-    GetAllMovies {
+  query getMovies {
+    getMovies {
       id
       title
     }
@@ -44,7 +44,7 @@ export default function Movies({
     return <h2>Sorry, there has been an error...</h2>;
   }
 
-  const getAllMoviesData = data.GetAllMovies;
+  const getAllMoviesData = data.getMovies;
 
   console.log(getAllMoviesData);
 

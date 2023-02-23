@@ -4,14 +4,14 @@ enum UserType {
 }
 
 type Query {
-  GetAllMovies: [Movie!]!
-  GetOneMovie(id: Int!): Movie!
+  getMovies: [Movie!]!
+  getOneMovie(id: Int!): Movie!
 }
 
 type Mutation {
-  CreateMovie(input: MovieInput!): Movie!
-  DeleteMovie(id: Int!): String!
-  UpdateMovie(id: Int!): String!
+  createMovie(input: MovieInput!): Movie!
+  deleteMovie(id: Int!): String!
+  updateMovie(id: Int!): String!
 }
 
 type Movie {

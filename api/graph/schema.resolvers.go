@@ -43,18 +43,18 @@ func (r *mutationResolver) UpdateMovie(ctx context.Context, id int) (string, err
 	panic(fmt.Errorf("not implemented: UpdateMovie - UpdateMovie"))
 }
 
-// GetAllMovies is the resolver for the GetAllMovies field.
-func (r *queryResolver) GetAllMovies(ctx context.Context) ([]*model.Movie, error) {
-	movies, err := r.MovieRepository.GetAllMovies()
+// GetMovies is the resolver for the getMovies field.
+func (r *queryResolver) GetMovies(ctx context.Context) ([]*model.Movie, error) {
+	movies, err := r.MovieRepository.GetMovies()
 	if err != nil {
 		return nil, err
 	}
 	return movies, nil
 }
 
-// GetOneMovie is the resolver for the GetOneMovie field.
+// GetOneMovie is the resolver for the getOneMovie field.
 func (r *queryResolver) GetOneMovie(ctx context.Context, id int) (*model.Movie, error) {
-	movie, err := r.MovieRepository.GetOneMovie(id)
+	movie, err := r.MovieRepository.GetMovie(id)
 	selectedMovie := &model.Movie{
 		ID:          movie.ID,
 		Title:       movie.Title,
