@@ -15,6 +15,19 @@ import (
 
 const defaultPort = "8080"
 
+func CorsMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+		w.Header().Set("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+		w.Header().Set("Access-Control-Allow-Methods", "GET, POST,OPTIONS")
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+		next.ServeHTTP(w, r)
+	})
+}
+
 func main() {
     godotenv.Load()
     config := &database.Config{
@@ -25,22 +38,28 @@ func main() {
         SSLMode:  os.Getenv("DB_SSLMODE"),
         DBName:   os.Getenv("DB_NAME"),
     }
+
     db, err := database.NewConnection(config)
+
     if err != nil {
         panic(err)
     }
+
     database.Migrate(db)
+
     port := os.Getenv("PORT")
     if port == "" {
         port = defaultPort
     }
+
     repo := repository.NewMovieService(db)
+
     srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
         MovieRepository: repo,
     }}))
 
-    http.Handle("/", playground.Handler("GraphQL playground", "/query"))
-    http.Handle("/query", srv)
+    http.Handle("/graphql", playground.Handler("GraphQL playground", "/query"))    
+    http.Handle("/", CorsMiddleware(srv)) 
 
     log.Printf("connect to http://localhost:%s/ for GraphQL playground", port)
     log.Fatal(http.ListenAndServe(":"+port, nil))

@@ -7,8 +7,9 @@ import { MovieCard } from "@/components/MovieCard";
 import { Footer } from "@/components/Footer";
 import Link from "next/link";
 import { InferGetStaticPropsType } from "next";
+import { useQuery, gql } from "@apollo/client";
 
-// Fetching data from the JSON file
+// Fetching mock data from the JSON file
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), "mock-data.json");
   const jsonData = await fsPromises.readFile(filePath, "utf-8");
@@ -19,10 +20,34 @@ export async function getStaticProps() {
   };
 }
 
+// GraphQL query
+const QUERY = gql`
+  query getAllMovies {
+    GetAllMovies {
+      id
+      title
+    }
+  }
+`;
+
 export default function Movies({
   movieData,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  // console.log(movieData);
+  const { data, loading, error } = useQuery(QUERY);
+
+  if (loading) {
+    return <h2>Loading Data...</h2>;
+  }
+
+  if (error) {
+    console.error(error);
+    return <h2>Sorry, there has been an error...</h2>;
+  }
+
+  const getAllMoviesData = data.GetAllMovies;
+
+  console.log(getAllMoviesData);
+
   return (
     <div className="bg-stone-200">
       <Head>
