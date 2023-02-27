@@ -8,9 +8,9 @@ import (
 
 type MovieRepository interface {
 	CreateMovie(movieInput *model.MovieInput) (*models.Movie, error)
-	UpdateMovie(movieInput *model.MovieInput, id int) error
-	DeleteMovie(id int) error
-	GetMovie(id int) (*models.Movie, error)
+	UpdateMovie(movieInput *model.MovieInput, id string) error
+	DeleteMovie(id string) error
+	GetMovie(id string) (*models.Movie, error)
 	GetMovies() ([]*model.Movie, error)
 }
 
@@ -28,10 +28,10 @@ func NewMovieService(db *gorm.DB) *MovieService {
 
 func (b *MovieService) CreateMovie(movieInput *model.MovieInput) (*models.Movie, error) {
 	movie := &models.Movie{
-		Title:     movieInput.Title,
-		Description:     movieInput.Description,
-		Genre:     movieInput.Genre,
-		Runtime:     movieInput.Runtime,
+		Title:     		movieInput.Title,
+		Description:  movieInput.Description,
+		Genre:     		movieInput.Genre,
+		Runtime:      movieInput.Runtime,
 		Released:     movieInput.Released,
 	}
 	err := b.Db.Create(&movie).Error
@@ -39,26 +39,26 @@ func (b *MovieService) CreateMovie(movieInput *model.MovieInput) (*models.Movie,
 	return movie, err
 }
 
-func (b *MovieService) UpdateMovie(movieInput *model.MovieInput, id int) error {
+func (b *MovieService) UpdateMovie(movieInput *model.MovieInput, id string) error {
 	movie := models.Movie{
-		ID:        id,
-		Title:     movieInput.Title,
-		Description:     movieInput.Description,
-		Genre:     movieInput.Genre,
-		Runtime:     movieInput.Runtime,
+		ID:        		id,
+		Title:     		movieInput.Title,
+		Description:  movieInput.Description,
+		Genre:    	  movieInput.Genre,
+		Runtime:      movieInput.Runtime,
 		Released:     movieInput.Released,
 	}
 	err := b.Db.Model(&movie).Where("id = ?", id).Updates(movie).Error
 	return err
 }
 
-func (b *MovieService) DeleteMovie(id int) error {
+func (b *MovieService) DeleteMovie(id string) error {
 	movie := &models.Movie{}
 	err := b.Db.Delete(movie, id).Error
 	return err
 }
 
-func (b *MovieService) GetMovie(id int) (*models.Movie, error) {
+func (b *MovieService) GetMovie(id string) (*models.Movie, error) {
 	movie := &models.Movie{}
 	err := b.Db.Where("id = ?", id).First(movie).Error
 	return movie, err

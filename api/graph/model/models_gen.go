@@ -9,19 +9,18 @@ import (
 )
 
 type Comment struct {
-	ID   int    `json:"id"`
+	ID   string `json:"id"`
 	User *User  `json:"user"`
 	Text string `json:"text"`
 }
 
 type Movie struct {
-	ID          int     `json:"id"`
+	ID          string  `json:"id"`
 	Title       string  `json:"title"`
 	Description string  `json:"description"`
 	Genre       string  `json:"genre"`
 	Runtime     float64 `json:"runtime"`
 	Released    int     `json:"released"`
-	Rating      int     `json:"rating"`
 	Img         string  `json:"img"`
 }
 
@@ -33,8 +32,14 @@ type MovieInput struct {
 	Released    int     `json:"released"`
 }
 
+type Rating struct {
+	ID   string `json:"id"`
+	User *User  `json:"user"`
+	Star int    `json:"star"`
+}
+
 type User struct {
-	ID       int      `json:"id"`
+	ID       string   `json:"id"`
 	UserType UserType `json:"userType"`
 	Username string   `json:"username"`
 	Email    string   `json:"email"`

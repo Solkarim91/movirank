@@ -1,63 +1,44 @@
-import fsPromises from "fs/promises";
-import { InferGetStaticPropsType } from "next";
-import path from "path";
-import { Movie } from "../../types/types";
+import Head from "next/head";
+import { useQuery } from "@apollo/client";
+import { useRouter } from "next/router";
+import { GET_ONE_MOVIE } from "@/graphql/queries/movie";
 
-// export const getStaticPaths = async () => {
-//   const filePath = path.join(process.cwd(), "mock-data.json");
-//   const jsonData = await fsPromises.readFile(filePath, "utf-8");
-//   const movieData = JSON.parse(jsonData);
-
-//   const paths = movieData.map((movie: Movie) => {
-//     return {
-//       params: { id: movie.id.toString() },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: false,
-//   };
-// };
-
-export const getStaticPaths = async () => {
-  const res = await fetch(
-    "https://my-json-server.typicode.com/solkarim91/movirank-placeholder/movies/"
-  );
-  const data = await res.json();
-
-  const paths = data.map((movie: Movie) => {
-    return {
-      params: { id: movie.id.toString() },
-    };
+export default function MoviePage() {
+  const router = useRouter();
+  const { id } = router.query;
+  const { data, loading, error } = useQuery(GET_ONE_MOVIE, {
+    variables: {
+      id: id,
+    },
   });
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
+  if (loading) {
+    return <h2>Loading Data...</h2>;
+  }
 
-export const getStaticProps = async (context: any) => {
-  const id = context.params.id;
-  const res = await fetch(
-    "https://my-json-server.typicode.com/solkarim91/movirank-placeholder/movies/" +
-      id
-  );
-  const data = await res.json();
+  if (error) {
+    console.error(error);
+    return <h2>Sorry, there has been an error...</h2>;
+  }
 
-  return {
-    props: { movie: data },
-  };
-};
+  const movie = data.getOneMovie;
 
-export default function MoviePage({
-  movie,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  console.log(movie);
   return (
-    <div>
-      <h1>{movie.title}</h1>
-    </div>
+    <>
+      <Head>
+        <title>MoviRank</title>
+        <meta name="description" content="Rate your favourite movies!" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div>
+        <h1>{movie.title}</h1>
+        <h1>{movie.description}</h1>
+        <h1>{movie.genre}</h1>
+        <h1>{movie.released}</h1>
+        <h1>{movie.runtime}</h1>
+        <h1>{movie.img}</h1>
+      </div>
+    </>
   );
 }

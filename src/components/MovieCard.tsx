@@ -8,7 +8,16 @@ export const MovieCard = (movie: MovieCardItem) => {
     <>
       <div className="flex flex-col">
         <div className="relative h-60 w-fill flex-shrink-0">
-          <Image src={movie.img} layout="fill" objectFit="cover" alt="/" />
+          <Image
+            src={movie.img}
+            fill
+            className="object-cover"
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+            priority
+            alt="/"
+          />
         </div>
         <div className="flex flex-col px-3 w-70 gap-y-1">
           <h4 className="text-base font-bold">{movie.title}</h4>
@@ -19,11 +28,11 @@ export const MovieCard = (movie: MovieCardItem) => {
         <div className="flex gap-x-3 [&>*]:gap-x-1 [&>*]:flex [&>*]:items-center">
           <div>
             <StarIcon className="h-8 w-6 text-yellow-400" />
-            <p className="text-sm">{movie.rating}</p>
+            <p className="text-sm">3</p> {/* Rating currently hard coded */}
           </div>
           <div>
             <ChatBubbleBottomCenterTextIcon className="h-8 w-6" />
-            <p className="text-sm">{movie.comments.length}</p>
+            <p className="text-sm">5</p> {/* Comments currently hard coded */}
           </div>
         </div>
         <div className="text-sm font-semibold text-gray-500 underline">

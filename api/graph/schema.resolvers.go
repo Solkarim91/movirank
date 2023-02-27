@@ -29,7 +29,7 @@ func (r *mutationResolver) CreateMovie(ctx context.Context, input model.MovieInp
 }
 
 // DeleteMovie is the resolver for the DeleteMovie field.
-func (r *mutationResolver) DeleteMovie(ctx context.Context, id int) (string, error) {
+func (r *mutationResolver) DeleteMovie(ctx context.Context, id string) (string, error) {
 	err := r.MovieRepository.DeleteMovie(id)
 	if err != nil {
 		return "", err
@@ -39,7 +39,7 @@ func (r *mutationResolver) DeleteMovie(ctx context.Context, id int) (string, err
 }
 
 // UpdateMovie is the resolver for the UpdateMovie field.
-func (r *mutationResolver) UpdateMovie(ctx context.Context, id int) (string, error) {
+func (r *mutationResolver) UpdateMovie(ctx context.Context, id string) (string, error) {
 	panic(fmt.Errorf("not implemented: UpdateMovie - UpdateMovie"))
 }
 
@@ -53,7 +53,7 @@ func (r *queryResolver) GetMovies(ctx context.Context) ([]*model.Movie, error) {
 }
 
 // GetOneMovie is the resolver for the getOneMovie field.
-func (r *queryResolver) GetOneMovie(ctx context.Context, id int) (*model.Movie, error) {
+func (r *queryResolver) GetOneMovie(ctx context.Context, id string) (*model.Movie, error) {
 	movie, err := r.MovieRepository.GetMovie(id)
 	selectedMovie := &model.Movie{
 		ID:          movie.ID,
@@ -62,7 +62,6 @@ func (r *queryResolver) GetOneMovie(ctx context.Context, id int) (*model.Movie, 
 		Genre:       movie.Genre,
 		Runtime:     movie.Runtime,
 		Released:    movie.Released,
-		Rating:      movie.Rating,
 		Img:         movie.Img,
 	}
 	if err != nil {
