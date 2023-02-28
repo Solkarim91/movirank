@@ -84,7 +84,7 @@ export default function MoviePage() {
               <div className="flex gap-x-8 absolute bottom-8 right-6">
                 <div>
                   <a
-                    href="#reviews-section"
+                    href="#reviews"
                     className="flex items-center justify-center gap-x-1 cursor-pointer"
                   >
                     <StarIcon className="h-8 w-6 text-yellow-400" />
@@ -94,7 +94,7 @@ export default function MoviePage() {
                 </div>
                 <div>
                   <a
-                    href="#comments-section"
+                    href="#comments"
                     className="flex items-center justify-center gap-x-1"
                   >
                     <ChatBubbleBottomCenterTextIcon className="h-8 w-6" />
@@ -107,7 +107,7 @@ export default function MoviePage() {
           </div>
           <div className="flex flex-col gap-y-4 mb-16 [&>*]:p-4">
             <div className="border-2 flex flex-col gap-y-2">
-              <a id="reviews-section" className="font-semibold">
+              <a id="reviews" className="font-semibold">
                 Reviews
               </a>
               <div className="flex flex-col gap-y-4">
@@ -126,7 +126,7 @@ export default function MoviePage() {
             <div className="border-2 flex flex-col gap-y-2">
               <div className="flex gap-x-2 items-center">
                 <ChatBubbleBottomCenterTextIcon className="h-6 w-4" />
-                <a id="comments-section" className="font-semibold">
+                <a id="comments" className="font-semibold">
                   Comments
                 </a>
               </div>

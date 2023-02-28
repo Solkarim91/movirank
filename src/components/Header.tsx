@@ -5,6 +5,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 
 export const Header = () => {
   const [searchInput, setSearchInput] = useState("");
@@ -14,7 +15,14 @@ export const Header = () => {
     <div className="flex h-20 justify-around py-4 border-b-2 bg-white [&>*]:my-auto">
       {/* Logo */}
       <Link href={"/movies"}>
-        <div>MoviRank</div>
+        <Image
+          src={
+            "https://res.cloudinary.com/domtywpyc/image/upload/v1677598736/logo-color_ksjklv.png"
+          }
+          width="100"
+          height="100"
+          alt={"/"}
+        />
       </Link>
       {/* Search */}
       <div className="flex h-10 w-[40%] max-w-[390px] border-2 justify-between px-2 rounded-full [&>*]:my-auto">
