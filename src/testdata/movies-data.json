@@ -1,0 +1,426 @@
+[
+  {
+    "id": 1,
+    "title": "The Lord of the Rings: The Return of the King",
+    "description": "Gandalf and Aragorn lead the World of Men against Sauron's army to draw his gaze from Frodo and Sam as they approach Mount Doom with the One Ring.",
+    "genre": ["Action", "Adventure", "Fantasy", "Drama"],
+    "runtime": 3.21,
+    "released": 2003,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/LOTR-ROTK_qer5yo.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Titanic",
+    "description": "A seventeen-year-old aristocrat falls in love with a kind but poor artist aboard the luxurious, ill-fated R.M.S. Titanic.",
+    "genre": ["Romance", "Disaster", "Drama"],
+    "runtime": 3.14,
+    "released": 1997,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/Titanic_i62e7s.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Avatar",
+    "description": "A paraplegic Marine dispatched to the moon Pandora on a unique mission becomes torn between following his orders and protecting the world he feels is his home.",
+    "genre": ["Action", "Science Fiction", "Fantasy", "Adventure"],
+    "runtime": 2.42,
+    "released": 2009,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avatar_gqngv2.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Star Wars: Episode VII - The Force Awakens",
+    "description": "As a new threat to the galaxy rises, Rey, a desert scavenger, and Finn, an ex-stormtrooper, must join Han Solo and Chewbacca to search for the one hope of restoring peace.",
+    "genre": ["Action", "Science Fiction", "Fantasy", "Adventure"],
+    "runtime": 2.18,
+    "released": 2015,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/starwars-forceawakens_exrzqf.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Avengers: Endgame",
+    "description": "After the devastating events of Avengers: Infinity War (2018), the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos' actions and restore balance to the universe.",
+    "genre": ["Action", "Science Fiction", "Fantasy", "Adventure"],
+    "runtime": 3.01,
+    "released": 2019,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avengers-endgame_jen8hk.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "Knocked Up",
+    "description": "For fun-loving party animal Ben Stone, the last thing he ever expected was for his one-night stand to show up on his doorstep eight weeks later to tell him she's pregnant with his child.",
+    "genre": ["Comedy", "Romantic Comedy", "Romance", "Drama"],
+    "runtime": 2.09,
+    "released": 2007,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676551286/Knocked_up_ga7ssk.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "Jurassic World",
+    "description": "A new theme park, built on the original site of Jurassic Park, creates a genetically modified hybrid dinosaur, the Indominus Rex, which escapes containment and goes on a killing spree.",
+    "genre": ["Action", "Science Fiction", "Thriller", "Adventure"],
+    "runtime": 2.04,
+    "released": 2015,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/jurassic-world_qmf3tg.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "title": "Captain Phillips",
+    "description": "The true story of Captain Richard Phillips and the 2009 hijacking by Somali pirates of the U.S.-flagged MV Maersk Alabama, the first American cargo ship to be hijacked in two hundred years.",
+    "genre": ["Action", "Drama", "Thriller", "Adventure"],
+    "runtime": 2.14,
+    "released": 2013,
+    "img": "https://res.cloudinary.com/domtywpyc/image/upload/v1676551561/Captain_phillips_nexwsm.jpg",
+    "reviews": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "star": 3
+      }
+    ],
+    "comments": [
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "Good movie"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "I fell asleep as the film was too long"
+      },
+      {
+        "id": 1,
+        "user": {
+          "id": 1,
+          "userType": "STANDARD",
+          "username": "solkarim91",
+          "email": "solkarim@live.co.uk"
+        },
+        "text": "LOVED this film!"
+      }
+    ]
+  }
+]

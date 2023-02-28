@@ -34,7 +34,7 @@ export default function Movies() {
       <Header />
 
       {/* Main */}
-      <main className="max-w-7xl h-[100%] mx-auto px-8 bg-white">
+      <main className="main">
         <div className="text-center pt-8 pb-4">
           <h1 className="font-bold text-2xl">All movies</h1>
         </div>

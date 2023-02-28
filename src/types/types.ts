@@ -23,3 +23,21 @@ export interface Comment {
   username: string;
   text: string;
 }
+
+export interface Review {
+  id: string;
+  user: User;
+  star: number;
+}
+
+export interface User {
+  id: string;
+  userType: UserType;
+  username: string;
+  email: string;
+}
+
+enum UserType {
+  ADMIN,
+  STANDARD,
+}

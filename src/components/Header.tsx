@@ -3,6 +3,7 @@ import {
   HeartIcon,
   UserCircleIcon,
 } from "@heroicons/react/24/outline";
+import Link from "next/link";
 import { useState } from "react";
 
 export const Header = () => {
@@ -12,7 +13,9 @@ export const Header = () => {
     // Header
     <div className="flex h-20 justify-around py-4 border-b-2 bg-white [&>*]:my-auto">
       {/* Logo */}
-      <div>MoviRank</div>
+      <Link href={"/movies"}>
+        <div>MoviRank</div>
+      </Link>
       {/* Search */}
       <div className="flex h-10 w-[40%] max-w-[390px] border-2 justify-between px-2 rounded-full [&>*]:my-auto">
         <input

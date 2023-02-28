@@ -2,6 +2,8 @@ import Image from "next/image";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { ChatBubbleBottomCenterTextIcon } from "@heroicons/react/24/outline";
 import { MovieCardItem } from "../types/types";
+import { commentsData } from "@/testdata/comments-data";
+import { reviewsData } from "@/testdata/reviews-data";
 
 export const MovieCard = (movie: MovieCardItem) => {
   return (
@@ -28,11 +30,13 @@ export const MovieCard = (movie: MovieCardItem) => {
         <div className="flex gap-x-3 [&>*]:gap-x-1 [&>*]:flex [&>*]:items-center">
           <div>
             <StarIcon className="h-8 w-6 text-yellow-400" />
-            <p className="text-sm">3</p> {/* Rating currently hard coded */}
+            <p className="text-sm">{reviewsData.length}</p>{" "}
+            {/* Review currently hard coded */}
           </div>
           <div>
             <ChatBubbleBottomCenterTextIcon className="h-8 w-6" />
-            <p className="text-sm">5</p> {/* Comments currently hard coded */}
+            <p className="text-sm">{commentsData.length}</p>{" "}
+            {/* Comments currently hard coded */}
           </div>
         </div>
         <div className="text-sm font-semibold text-gray-500 underline">

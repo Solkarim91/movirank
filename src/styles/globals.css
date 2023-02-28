@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  main {
+    @apply max-w-7xl min-h-screen mx-auto px-8 bg-white;
+  }
+}
