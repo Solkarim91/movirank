@@ -10,12 +10,11 @@ type Movie struct {
     ID    		  string    	`gorm:"primary key;autoIncrement" json:"id"`
     Title     	string 			`json:"title"`
     Description string 			`json:"description"`
+    Director 		string 			`json:"director"`
     Genre 			string 			`json:"genre"`
 		Runtime 		float64			`json:"runtime"`
 		Released 		int 				`json:"released"`
 		Img 				string 			`json:"img"`
-		// Ratings     []Rating  	`json:"ratings"`
-		// Comments    []Comment 	`json:"comments"`
 }
 
 type Comment struct {

@@ -37,6 +37,7 @@ type Movie {
   id: ID!
   title: String!
   description: String!
+  director: String!
   genre: String!
   runtime: Float!
   released: Int!
@@ -46,6 +47,7 @@ type Movie {
 input MovieInput {
   title: String!
   description: String!
+  director: String!
   genre: String!
   runtime: Float!
   released: Int!

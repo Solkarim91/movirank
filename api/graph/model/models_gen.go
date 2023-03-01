@@ -18,6 +18,7 @@ type Movie struct {
 	ID          string  `json:"id"`
 	Title       string  `json:"title"`
 	Description string  `json:"description"`
+	Director    string  `json:"director"`
 	Genre       string  `json:"genre"`
 	Runtime     float64 `json:"runtime"`
 	Released    int     `json:"released"`
@@ -27,6 +28,7 @@ type Movie struct {
 type MovieInput struct {
 	Title       string  `json:"title"`
 	Description string  `json:"description"`
+	Director    string  `json:"director"`
 	Genre       string  `json:"genre"`
 	Runtime     float64 `json:"runtime"`
 	Released    int     `json:"released"`

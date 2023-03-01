@@ -17,6 +17,7 @@ func (r *mutationResolver) CreateMovie(ctx context.Context, input model.MovieInp
 	movieCreated := &model.Movie{
 		Title:       movie.Title,
 		Description: movie.Description,
+		Director:    movie.Director,
 		Genre:       movie.Genre,
 		Runtime:     movie.Runtime,
 		Released:    movie.Released,
@@ -59,6 +60,7 @@ func (r *queryResolver) GetOneMovie(ctx context.Context, id string) (*model.Movi
 		ID:          movie.ID,
 		Title:       movie.Title,
 		Description: movie.Description,
+		Director:    movie.Director,
 		Genre:       movie.Genre,
 		Runtime:     movie.Runtime,
 		Released:    movie.Released,

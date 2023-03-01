@@ -52,6 +52,7 @@ type ComplexityRoot struct {
 
 	Movie struct {
 		Description func(childComplexity int) int
+		Director    func(childComplexity int) int
 		Genre       func(childComplexity int) int
 		ID          func(childComplexity int) int
 		Img         func(childComplexity int) int
@@ -137,6 +138,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Movie.Description(childComplexity), true
+
+	case "Movie.director":
+		if e.complexity.Movie.Director == nil {
+			break
+		}
+
+		return e.complexity.Movie.Director(childComplexity), true
 
 	case "Movie.genre":
 		if e.complexity.Movie.Genre == nil {
@@ -759,6 +767,50 @@ func (ec *executionContext) fieldContext_Movie_description(ctx context.Context, 
 	return fc, nil
 }
 
+func (ec *executionContext) _Movie_director(ctx context.Context, field graphql.CollectedField, obj *model.Movie) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Movie_director(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Director, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Movie_director(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Movie",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Movie_genre(ctx context.Context, field graphql.CollectedField, obj *model.Movie) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Movie_genre(ctx, field)
 	if err != nil {
@@ -979,6 +1031,8 @@ func (ec *executionContext) fieldContext_Mutation_createMovie(ctx context.Contex
 				return ec.fieldContext_Movie_title(ctx, field)
 			case "description":
 				return ec.fieldContext_Movie_description(ctx, field)
+			case "director":
+				return ec.fieldContext_Movie_director(ctx, field)
 			case "genre":
 				return ec.fieldContext_Movie_genre(ctx, field)
 			case "runtime":
@@ -1157,6 +1211,8 @@ func (ec *executionContext) fieldContext_Query_getMovies(ctx context.Context, fi
 				return ec.fieldContext_Movie_title(ctx, field)
 			case "description":
 				return ec.fieldContext_Movie_description(ctx, field)
+			case "director":
+				return ec.fieldContext_Movie_director(ctx, field)
 			case "genre":
 				return ec.fieldContext_Movie_genre(ctx, field)
 			case "runtime":
@@ -1216,6 +1272,8 @@ func (ec *executionContext) fieldContext_Query_getOneMovie(ctx context.Context, 
 				return ec.fieldContext_Movie_title(ctx, field)
 			case "description":
 				return ec.fieldContext_Movie_description(ctx, field)
+			case "director":
+				return ec.fieldContext_Movie_director(ctx, field)
 			case "genre":
 				return ec.fieldContext_Movie_genre(ctx, field)
 			case "runtime":
@@ -3467,7 +3525,7 @@ func (ec *executionContext) unmarshalInputMovieInput(ctx context.Context, obj in
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"title", "description", "genre", "runtime", "released"}
+	fieldsInOrder := [...]string{"title", "description", "director", "genre", "runtime", "released"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -3487,6 +3545,14 @@ func (ec *executionContext) unmarshalInputMovieInput(ctx context.Context, obj in
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("description"))
 			it.Description, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "director":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("director"))
+			it.Director, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3597,6 +3663,13 @@ func (ec *executionContext) _Movie(ctx context.Context, sel ast.SelectionSet, ob
 		case "description":
 
 			out.Values[i] = ec._Movie_description(ctx, field, obj)
+
+			if out.Values[i] == graphql.Null {
+				invalids++
+			}
+		case "director":
+
+			out.Values[i] = ec._Movie_director(ctx, field, obj)
 
 			if out.Values[i] == graphql.Null {
 				invalids++
