@@ -40,6 +40,16 @@ type Rating struct {
 	Star int    `json:"star"`
 }
 
+type UpdateMovieInput struct {
+	ID          string  `json:"id"`
+	Title       string  `json:"title"`
+	Description string  `json:"description"`
+	Director    string  `json:"director"`
+	Genre       string  `json:"genre"`
+	Runtime     float64 `json:"runtime"`
+	Released    int     `json:"released"`
+}
+
 type User struct {
 	ID       string   `json:"id"`
 	UserType UserType `json:"userType"`

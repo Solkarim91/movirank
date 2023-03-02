@@ -11,7 +11,7 @@ type Query {
 type Mutation {
   createMovie(input: MovieInput!): Movie!
   deleteMovie(id: ID!): String!
-  updateMovie(id: ID!): String!
+  updateMovie(input: UpdateMovieInput!): String!
 }
 
 type User {
@@ -45,6 +45,16 @@ type Movie {
 }
 
 input MovieInput {
+  title: String!
+  description: String!
+  director: String!
+  genre: String!
+  runtime: Float!
+  released: Int!
+}
+
+input UpdateMovieInput {
+  id: ID!
   title: String!
   description: String!
   director: String!

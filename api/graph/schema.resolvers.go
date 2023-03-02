@@ -6,7 +6,6 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/solkarim91/movirank/api/graph/model"
 )
@@ -40,8 +39,13 @@ func (r *mutationResolver) DeleteMovie(ctx context.Context, id string) (string, 
 }
 
 // UpdateMovie is the resolver for the UpdateMovie field.
-func (r *mutationResolver) UpdateMovie(ctx context.Context, id string) (string, error) {
-	panic(fmt.Errorf("not implemented: UpdateMovie - UpdateMovie"))
+func (r *mutationResolver) UpdateMovie(ctx context.Context, input model.UpdateMovieInput) (string, error) {
+	err := r.MovieRepository.UpdateMovie(&input)
+	if err != nil {
+		return "", err
+	}
+	successMessage := "successfully updated"
+	return successMessage, nil
 }
 
 // GetMovies is the resolver for the getMovies field.
