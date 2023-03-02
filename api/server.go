@@ -9,6 +9,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 	"github.com/joho/godotenv"
 	"github.com/solkarim91/movirank/api/app/database"
+	"github.com/solkarim91/movirank/api/app/database/seeds"
 	"github.com/solkarim91/movirank/api/app/repository"
 	"github.com/solkarim91/movirank/api/graph"
 )
@@ -53,6 +54,12 @@ func main() {
     }
 
     repo := repository.NewMovieService(db)
+
+    for _, seed := range seeds.SeedMovies() {
+		if err := seed.Run(db); err != nil {
+			log.Fatalf("Running seed '%s', failed with error: %s", seed.Name, err)
+		}
+	}
 
     srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
         MovieRepository: repo,

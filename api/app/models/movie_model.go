@@ -1,11 +1,5 @@
 package models
 
-import (
-	"fmt"
-	"io"
-	"strconv"
-)
-
 type Movie struct {
     ID    		  string    	`gorm:"primary key;autoIncrement" json:"id"`
     Title     	string 			`json:"title"`
@@ -17,62 +11,62 @@ type Movie struct {
 		Img 				string 			`json:"img"`
 }
 
-type Comment struct {
-		ID 		string `json:"id"`
-		User 	*User  `json:"user"`
-		Text 	string `json:"text"`
-}
+// type Comment struct {
+// 		ID 		string `json:"id"`
+// 		User 	*User  `json:"user"`
+// 		Text 	string `json:"text"`
+// }
 
-type Rating struct {
-		ID   	string  `json:"id"`
-		User	*User 	`json:"user"`
-		Star 	int   	`json:"star"`
-}
+// type Rating struct {
+// 		ID   	string  `json:"id"`
+// 		User	*User 	`json:"user"`
+// 		Star 	int   	`json:"star"`
+// }
 
-type User struct {
-		ID 				string   `json:"id"`
-		UserType  UserType `json:"userType"`
-		Username 	string   `json:"username"`
-		Email     string   `json:"email"`
-}
+// type User struct {
+// 		ID 				string   `json:"id"`
+// 		UserType  UserType `json:"userType"`
+// 		Username 	string   `json:"username"`
+// 		Email     string   `json:"email"`
+// }
 
-type UserType string
+// type UserType string
 
-const (
-	UserTypeAdmin    UserType = "ADMIN"
-	UserTypeStandard UserType = "STANDARD"
-)
+// const (
+// 	UserTypeAdmin    UserType = "ADMIN"
+// 	UserTypeStandard UserType = "STANDARD"
+// )
 
-var AllUserType = []UserType{
-	UserTypeAdmin,
-	UserTypeStandard,
-}
+// var AllUserType = []UserType{
+// 	UserTypeAdmin,
+// 	UserTypeStandard,
+// }
 
-func (e UserType) IsValid() bool {
-	switch e {
-	case UserTypeAdmin, UserTypeStandard:
-		return true
-	}
-	return false
-}
+// func (e UserType) IsValid() bool {
+// 	switch e {
+// 	case UserTypeAdmin, UserTypeStandard:
+// 		return true
+// 	}
+// 	return false
+// }
 
-func (e UserType) String() string {
-	return string(e)
-}
+// func (e UserType) String() string {
+// 	return string(e)
+// }
 
-func (e *UserType) UnmarshalGQL(v interface{}) error {
-	str, ok := v.(string)
-	if !ok {
-		return fmt.Errorf("enums must be strings")
-	}
+// func (e *UserType) UnmarshalGQL(v interface{}) error {
+// 	str, ok := v.(string)
+// 	if !ok {
+// 		return fmt.Errorf("enums must be strings")
+// 	}
 
-	*e = UserType(str)
-	if !e.IsValid() {
-		return fmt.Errorf("%s is not a valid UserType", str)
-	}
-	return nil
-}
+// 	*e = UserType(str)
+// 	if !e.IsValid() {
+// 		return fmt.Errorf("%s is not a valid UserType", str)
+// 	}
+// 	return nil
+// }
 
-func (e UserType) MarshalGQL(w io.Writer) {
-	fmt.Fprint(w, strconv.Quote(e.String()))
-}
+// func (e UserType) MarshalGQL(w io.Writer) {
+// 	fmt.Fprint(w, strconv.Quote(e.String()))
+// }
