@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"github.com/google/uuid"
 	"github.com/solkarim91/movirank/api/app/models"
 	"github.com/solkarim91/movirank/api/graph/model"
 	"gorm.io/gorm"
@@ -28,6 +29,7 @@ func NewMovieService(db *gorm.DB) *MovieService {
 
 func (b *MovieService) CreateMovie(movieInput *model.MovieInput) (*models.Movie, error) {
 	movie := &models.Movie{
+		ID: 					uuid.New().String(),
 		Title:     		movieInput.Title,
 		Description:  movieInput.Description,
 		Director: 	  movieInput.Director,
@@ -56,7 +58,7 @@ func (b *MovieService) UpdateMovie(movieInput *model.MovieInput, id string) erro
 
 func (b *MovieService) DeleteMovie(id string) error {
 	movie := &models.Movie{}
-	err := b.Db.Delete(movie, id).Error
+	err := b.Db.Delete(movie, "id = ?", id).Error
 	return err
 }
 
