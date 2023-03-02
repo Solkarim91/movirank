@@ -9,7 +9,7 @@ import (
 
 type MovieRepository interface {
 	CreateMovie(movieInput *model.MovieInput) (*models.Movie, error)
-	UpdateMovie(movieInput *model.MovieInput, id string) error
+	UpdateMovie(movieInput *model.UpdateMovieInput) error
 	DeleteMovie(id string) error
 	GetMovie(id string) (*models.Movie, error)
 	GetMovies() ([]*model.Movie, error)
@@ -42,9 +42,9 @@ func (b *MovieService) CreateMovie(movieInput *model.MovieInput) (*models.Movie,
 	return movie, err
 }
 
-func (b *MovieService) UpdateMovie(movieInput *model.MovieInput, id string) error {
+func (b *MovieService) UpdateMovie(movieInput *model.UpdateMovieInput) error {
 	movie := models.Movie{
-		ID:        		id,
+		ID:        		movieInput.ID,
 		Title:     		movieInput.Title,
 		Description:  movieInput.Description,
 		Director: 	  movieInput.Director,
@@ -52,7 +52,7 @@ func (b *MovieService) UpdateMovie(movieInput *model.MovieInput, id string) erro
 		Runtime:      movieInput.Runtime,
 		Released:     movieInput.Released,
 	}
-	err := b.Db.Model(&movie).Where("id = ?", id).Updates(movie).Error
+	err := b.Db.Model(&movie).Where("id = ?", movieInput.ID).Updates(movie).Error
 	return err
 }
 

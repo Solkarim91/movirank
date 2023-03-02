@@ -64,7 +64,7 @@ type ComplexityRoot struct {
 	Mutation struct {
 		CreateMovie func(childComplexity int, input model.MovieInput) int
 		DeleteMovie func(childComplexity int, id string) int
-		UpdateMovie func(childComplexity int, id string) int
+		UpdateMovie func(childComplexity int, input model.UpdateMovieInput) int
 	}
 
 	Query struct {
@@ -89,7 +89,7 @@ type ComplexityRoot struct {
 type MutationResolver interface {
 	CreateMovie(ctx context.Context, input model.MovieInput) (*model.Movie, error)
 	DeleteMovie(ctx context.Context, id string) (string, error)
-	UpdateMovie(ctx context.Context, id string) (string, error)
+	UpdateMovie(ctx context.Context, input model.UpdateMovieInput) (string, error)
 }
 type QueryResolver interface {
 	GetMovies(ctx context.Context) ([]*model.Movie, error)
@@ -222,7 +222,7 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 			return 0, false
 		}
 
-		return e.complexity.Mutation.UpdateMovie(childComplexity, args["id"].(string)), true
+		return e.complexity.Mutation.UpdateMovie(childComplexity, args["input"].(model.UpdateMovieInput)), true
 
 	case "Query.getMovies":
 		if e.complexity.Query.GetMovies == nil {
@@ -301,6 +301,7 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 	ec := executionContext{rc, e}
 	inputUnmarshalMap := graphql.BuildUnmarshalerMap(
 		ec.unmarshalInputMovieInput,
+		ec.unmarshalInputUpdateMovieInput,
 	)
 	first := true
 
@@ -413,15 +414,15 @@ func (ec *executionContext) field_Mutation_deleteMovie_args(ctx context.Context,
 func (ec *executionContext) field_Mutation_updateMovie_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
-	var arg0 string
-	if tmp, ok := rawArgs["id"]; ok {
-		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
-		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+	var arg0 model.UpdateMovieInput
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg0, err = ec.unmarshalNUpdateMovieInput2githubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUpdateMovieInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
 	}
-	args["id"] = arg0
+	args["input"] = arg0
 	return args, nil
 }
 
@@ -1127,7 +1128,7 @@ func (ec *executionContext) _Mutation_updateMovie(ctx context.Context, field gra
 	}()
 	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
 		ctx = rctx // use context from middleware stack in children
-		return ec.resolvers.Mutation().UpdateMovie(rctx, fc.Args["id"].(string))
+		return ec.resolvers.Mutation().UpdateMovie(rctx, fc.Args["input"].(model.UpdateMovieInput))
 	})
 	if err != nil {
 		ec.Error(ctx, err)
@@ -3586,6 +3587,82 @@ func (ec *executionContext) unmarshalInputMovieInput(ctx context.Context, obj in
 	return it, nil
 }
 
+func (ec *executionContext) unmarshalInputUpdateMovieInput(ctx context.Context, obj interface{}) (model.UpdateMovieInput, error) {
+	var it model.UpdateMovieInput
+	asMap := map[string]interface{}{}
+	for k, v := range obj.(map[string]interface{}) {
+		asMap[k] = v
+	}
+
+	fieldsInOrder := [...]string{"id", "title", "description", "director", "genre", "runtime", "released"}
+	for _, k := range fieldsInOrder {
+		v, ok := asMap[k]
+		if !ok {
+			continue
+		}
+		switch k {
+		case "id":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+			it.ID, err = ec.unmarshalNID2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "title":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("title"))
+			it.Title, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "description":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("description"))
+			it.Description, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "director":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("director"))
+			it.Director, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "genre":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("genre"))
+			it.Genre, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "runtime":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("runtime"))
+			it.Runtime, err = ec.unmarshalNFloat2float64(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "released":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("released"))
+			it.Released, err = ec.unmarshalNInt2int(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		}
+	}
+
+	return it, nil
+}
+
 // endregion **************************** input.gotpl *****************************
 
 // region    ************************** interface.gotpl ***************************
@@ -4380,6 +4457,11 @@ func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.S
 		}
 	}
 	return res
+}
+
+func (ec *executionContext) unmarshalNUpdateMovieInput2githubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUpdateMovieInput(ctx context.Context, v interface{}) (model.UpdateMovieInput, error) {
+	res, err := ec.unmarshalInputUpdateMovieInput(ctx, v)
+	return res, graphql.ErrorOnPath(ctx, err)
 }
 
 func (ec *executionContext) marshalNUser2ᚖgithubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUser(ctx context.Context, sel ast.SelectionSet, v *model.User) graphql.Marshaler {
