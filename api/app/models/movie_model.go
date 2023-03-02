@@ -1,7 +1,7 @@
 package models
 
 type Movie struct {
-    ID    		  string    	`gorm:"primary key;autoIncrement" json:"id"`
+    ID    		  string      `gorm:"primary key" json:"id"`
     Title     	string 			`json:"title"`
     Description string 			`json:"description"`
     Director 		string 			`json:"director"`
