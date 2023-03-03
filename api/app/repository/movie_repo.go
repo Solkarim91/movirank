@@ -12,7 +12,7 @@ type MovieRepository interface {
 	UpdateMovie(movieInput *model.UpdateMovieInput) error
 	DeleteMovie(id string) error
 	GetMovie(id string) (*models.Movie, error)
-	GetMovies() ([]*model.Movie, error)
+	GetMovies() ([]*models.Movie, error)
 }
 
 type MovieService struct {
@@ -33,9 +33,11 @@ func (b *MovieService) CreateMovie(movieInput *model.MovieInput) (*models.Movie,
 		Title:     		movieInput.Title,
 		Description:  movieInput.Description,
 		Director: 	  movieInput.Director,
+		Cast: 			  movieInput.Cast,
 		Genre:     		movieInput.Genre,
 		Runtime:      movieInput.Runtime,
 		Released:     movieInput.Released,
+		Img: 					movieInput.Img,		
 	}
 	err := b.Db.Create(&movie).Error
 
@@ -48,9 +50,11 @@ func (b *MovieService) UpdateMovie(movieInput *model.UpdateMovieInput) error {
 		Title:     		movieInput.Title,
 		Description:  movieInput.Description,
 		Director: 	  movieInput.Director,
+		Cast: 			  movieInput.Cast,
 		Genre:    	  movieInput.Genre,
 		Runtime:      movieInput.Runtime,
 		Released:     movieInput.Released,
+		Img: 					movieInput.Img,
 	}
 	err := b.Db.Model(&movie).Where("id = ?", movieInput.ID).Updates(movie).Error
 	return err
@@ -68,8 +72,8 @@ func (b *MovieService) GetMovie(id string) (*models.Movie, error) {
 	return movie, err
 }
 
-func (b *MovieService) GetMovies() ([]*model.Movie, error) {
-	movies := []*model.Movie{}
+func (b *MovieService) GetMovies() ([]*models.Movie, error) {
+	movies := []*models.Movie{}
 	err := b.Db.Find(&movies).Error
 	return movies, err
 

@@ -15,23 +15,26 @@ type Comment struct {
 }
 
 type Movie struct {
-	ID          string  `json:"id"`
-	Title       string  `json:"title"`
-	Description string  `json:"description"`
-	Director    string  `json:"director"`
-	Genre       string  `json:"genre"`
-	Runtime     float64 `json:"runtime"`
-	Released    int     `json:"released"`
-	Img         string  `json:"img"`
+	ID          string   `json:"id"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Director    string   `json:"director"`
+	Cast        []string `json:"cast"`
+	Genre       string   `json:"genre"`
+	Runtime     float64  `json:"runtime"`
+	Released    int      `json:"released"`
+	Img         string   `json:"img"`
 }
 
 type MovieInput struct {
-	Title       string  `json:"title"`
-	Description string  `json:"description"`
-	Director    string  `json:"director"`
-	Genre       string  `json:"genre"`
-	Runtime     float64 `json:"runtime"`
-	Released    int     `json:"released"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Director    string   `json:"director"`
+	Cast        []string `json:"cast"`
+	Genre       string   `json:"genre"`
+	Runtime     float64  `json:"runtime"`
+	Released    int      `json:"released"`
+	Img         string   `json:"img"`
 }
 
 type Rating struct {
@@ -41,13 +44,15 @@ type Rating struct {
 }
 
 type UpdateMovieInput struct {
-	ID          string  `json:"id"`
-	Title       string  `json:"title"`
-	Description string  `json:"description"`
-	Director    string  `json:"director"`
-	Genre       string  `json:"genre"`
-	Runtime     float64 `json:"runtime"`
-	Released    int     `json:"released"`
+	ID          string   `json:"id"`
+	Title       string   `json:"title"`
+	Description string   `json:"description"`
+	Director    string   `json:"director"`
+	Cast        []string `json:"cast"`
+	Genre       string   `json:"genre"`
+	Runtime     float64  `json:"runtime"`
+	Released    int      `json:"released"`
+	Img         string   `json:"img"`
 }
 
 type User struct {
