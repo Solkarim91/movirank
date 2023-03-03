@@ -6,6 +6,8 @@ export const GET_ONE_MOVIE = gql`
       id
       title
       description
+      director
+      cast
       genre
       released
       runtime

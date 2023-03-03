@@ -53,7 +53,7 @@ export default function MoviePage() {
             <h1 className="text-sm">Back</h1>
           </Link>
           <div className="flex p-8 gap-x-8 border-2 relative">
-            <div className="relative h-[20vw] w-[14vw] flex-shrink-0">
+            <div className="relative h-[24vw] w-[16vw] flex-shrink-0">
               <Image
                 src={movie.img}
                 fill
@@ -65,7 +65,7 @@ export default function MoviePage() {
               />
             </div>
             <div className="flex flex-col gap-y-2 w-[60%]">
-              <div className="flex gap-x-20 text-sm text-gray-600 mb-4">
+              <div className="flex gap-x-20 text-sm text-gray-600 mb-2">
                 <div>
                   <h3>Genre</h3>
                   <p>{movie.genre}</p>
@@ -79,9 +79,27 @@ export default function MoviePage() {
                   <p>{movie.runtime}</p>
                 </div>
               </div>
-              <h1 className="font-black text-2xl">{movie.title}</h1>
-              <p>{movie.description}</p>
-              <div className="flex gap-x-8 absolute bottom-8 right-6">
+              <div className="mb-2">
+                <h1 className="font-black text-2xl">{movie.title}</h1>
+                <p>{movie.description}</p>
+              </div>
+              <div className="flex flex-col gap-y-3 text-sm">
+                <div className="flex gap-x-1 items-end">
+                  <h3 className="font-bold">Director:</h3>
+                  <p>{movie.director}</p>
+                </div>
+                <div className="flex flex-col gap-y-1">
+                  <h3 className="font-bold">Cast:</h3>
+                  <div className="grid grid-cols-5 gap-x-8 gap-y-2">
+                    {movie.cast.map((actor: string) => (
+                      <p className="w-60" key={actor}>
+                        {actor}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-x-8 absolute bottom-5 right-6">
                 <div>
                   <a
                     href="#reviews"
