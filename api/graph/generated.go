@@ -51,6 +51,7 @@ type ComplexityRoot struct {
 	}
 
 	Movie struct {
+		Cast        func(childComplexity int) int
 		Description func(childComplexity int) int
 		Director    func(childComplexity int) int
 		Genre       func(childComplexity int) int
@@ -131,6 +132,13 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Comment.User(childComplexity), true
+
+	case "Movie.cast":
+		if e.complexity.Movie.Cast == nil {
+			break
+		}
+
+		return e.complexity.Movie.Cast(childComplexity), true
 
 	case "Movie.description":
 		if e.complexity.Movie.Description == nil {
@@ -812,6 +820,47 @@ func (ec *executionContext) fieldContext_Movie_director(ctx context.Context, fie
 	return fc, nil
 }
 
+func (ec *executionContext) _Movie_cast(ctx context.Context, field graphql.CollectedField, obj *model.Movie) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Movie_cast(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return obj.Cast, nil
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+		return graphql.Null
+	}
+	if resTmp == nil {
+		return graphql.Null
+	}
+	res := resTmp.([]string)
+	fc.Result = res
+	return ec.marshalOString2ᚕstringᚄ(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Movie_cast(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Movie",
+		Field:      field,
+		IsMethod:   false,
+		IsResolver: false,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	return fc, nil
+}
+
 func (ec *executionContext) _Movie_genre(ctx context.Context, field graphql.CollectedField, obj *model.Movie) (ret graphql.Marshaler) {
 	fc, err := ec.fieldContext_Movie_genre(ctx, field)
 	if err != nil {
@@ -1034,6 +1083,8 @@ func (ec *executionContext) fieldContext_Mutation_createMovie(ctx context.Contex
 				return ec.fieldContext_Movie_description(ctx, field)
 			case "director":
 				return ec.fieldContext_Movie_director(ctx, field)
+			case "cast":
+				return ec.fieldContext_Movie_cast(ctx, field)
 			case "genre":
 				return ec.fieldContext_Movie_genre(ctx, field)
 			case "runtime":
@@ -1214,6 +1265,8 @@ func (ec *executionContext) fieldContext_Query_getMovies(ctx context.Context, fi
 				return ec.fieldContext_Movie_description(ctx, field)
 			case "director":
 				return ec.fieldContext_Movie_director(ctx, field)
+			case "cast":
+				return ec.fieldContext_Movie_cast(ctx, field)
 			case "genre":
 				return ec.fieldContext_Movie_genre(ctx, field)
 			case "runtime":
@@ -1275,6 +1328,8 @@ func (ec *executionContext) fieldContext_Query_getOneMovie(ctx context.Context, 
 				return ec.fieldContext_Movie_description(ctx, field)
 			case "director":
 				return ec.fieldContext_Movie_director(ctx, field)
+			case "cast":
+				return ec.fieldContext_Movie_cast(ctx, field)
 			case "genre":
 				return ec.fieldContext_Movie_genre(ctx, field)
 			case "runtime":
@@ -3526,7 +3581,7 @@ func (ec *executionContext) unmarshalInputMovieInput(ctx context.Context, obj in
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"title", "description", "director", "genre", "runtime", "released"}
+	fieldsInOrder := [...]string{"title", "description", "director", "cast", "genre", "runtime", "released", "img"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -3557,6 +3612,14 @@ func (ec *executionContext) unmarshalInputMovieInput(ctx context.Context, obj in
 			if err != nil {
 				return it, err
 			}
+		case "cast":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("cast"))
+			it.Cast, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "genre":
 			var err error
 
@@ -3581,6 +3644,14 @@ func (ec *executionContext) unmarshalInputMovieInput(ctx context.Context, obj in
 			if err != nil {
 				return it, err
 			}
+		case "img":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("img"))
+			it.Img, err = ec.unmarshalNString2string(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		}
 	}
 
@@ -3594,7 +3665,7 @@ func (ec *executionContext) unmarshalInputUpdateMovieInput(ctx context.Context, 
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"id", "title", "description", "director", "genre", "runtime", "released"}
+	fieldsInOrder := [...]string{"id", "title", "description", "director", "cast", "genre", "runtime", "released", "img"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -3633,6 +3704,14 @@ func (ec *executionContext) unmarshalInputUpdateMovieInput(ctx context.Context, 
 			if err != nil {
 				return it, err
 			}
+		case "cast":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("cast"))
+			it.Cast, err = ec.unmarshalOString2ᚕstringᚄ(ctx, v)
+			if err != nil {
+				return it, err
+			}
 		case "genre":
 			var err error
 
@@ -3654,6 +3733,14 @@ func (ec *executionContext) unmarshalInputUpdateMovieInput(ctx context.Context, 
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("released"))
 			it.Released, err = ec.unmarshalNInt2int(ctx, v)
+			if err != nil {
+				return it, err
+			}
+		case "img":
+			var err error
+
+			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("img"))
+			it.Img, err = ec.unmarshalNString2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -3751,6 +3838,10 @@ func (ec *executionContext) _Movie(ctx context.Context, sel ast.SelectionSet, ob
 			if out.Values[i] == graphql.Null {
 				invalids++
 			}
+		case "cast":
+
+			out.Values[i] = ec._Movie_cast(ctx, field, obj)
+
 		case "genre":
 
 			out.Values[i] = ec._Movie_genre(ctx, field, obj)
@@ -4761,6 +4852,44 @@ func (ec *executionContext) marshalOBoolean2ᚖbool(ctx context.Context, sel ast
 	}
 	res := graphql.MarshalBoolean(*v)
 	return res
+}
+
+func (ec *executionContext) unmarshalOString2ᚕstringᚄ(ctx context.Context, v interface{}) ([]string, error) {
+	if v == nil {
+		return nil, nil
+	}
+	var vSlice []interface{}
+	if v != nil {
+		vSlice = graphql.CoerceList(v)
+	}
+	var err error
+	res := make([]string, len(vSlice))
+	for i := range vSlice {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithIndex(i))
+		res[i], err = ec.unmarshalNString2string(ctx, vSlice[i])
+		if err != nil {
+			return nil, err
+		}
+	}
+	return res, nil
+}
+
+func (ec *executionContext) marshalOString2ᚕstringᚄ(ctx context.Context, sel ast.SelectionSet, v []string) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	ret := make(graphql.Array, len(v))
+	for i := range v {
+		ret[i] = ec.marshalNString2string(ctx, sel, v[i])
+	}
+
+	for _, e := range ret {
+		if e == graphql.Null {
+			return graphql.Null
+		}
+	}
+
+	return ret
 }
 
 func (ec *executionContext) unmarshalOString2ᚖstring(ctx context.Context, v interface{}) (*string, error) {

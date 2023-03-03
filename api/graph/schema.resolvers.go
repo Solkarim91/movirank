@@ -17,9 +17,11 @@ func (r *mutationResolver) CreateMovie(ctx context.Context, input model.MovieInp
 		Title:       movie.Title,
 		Description: movie.Description,
 		Director:    movie.Director,
+		Cast:        movie.Cast,
 		Genre:       movie.Genre,
 		Runtime:     movie.Runtime,
 		Released:    movie.Released,
+		Img:         movie.Img,
 		ID:          movie.ID,
 	}
 	if err != nil {
@@ -51,10 +53,27 @@ func (r *mutationResolver) UpdateMovie(ctx context.Context, input model.UpdateMo
 // GetMovies is the resolver for the getMovies field.
 func (r *queryResolver) GetMovies(ctx context.Context) ([]*model.Movie, error) {
 	movies, err := r.MovieRepository.GetMovies()
+	var allMovies []*model.Movie
+
+	for _, movie := range movies {
+		mov := &model.Movie{
+			ID:          movie.ID,
+			Title:       movie.Title,
+			Description: movie.Description,
+			Director:    movie.Director,
+			Cast:        movie.Cast,
+			Genre:       movie.Genre,
+			Runtime:     movie.Runtime,
+			Released:    movie.Released,
+			Img:         movie.Img,
+		}
+		allMovies = append(allMovies, mov)
+	}
+
 	if err != nil {
 		return nil, err
 	}
-	return movies, nil
+	return allMovies, nil
 }
 
 // GetOneMovie is the resolver for the getOneMovie field.
@@ -65,6 +84,7 @@ func (r *queryResolver) GetOneMovie(ctx context.Context, id string) (*model.Movi
 		Title:       movie.Title,
 		Description: movie.Description,
 		Director:    movie.Director,
+		Cast:        movie.Cast,
 		Genre:       movie.Genre,
 		Runtime:     movie.Runtime,
 		Released:    movie.Released,
