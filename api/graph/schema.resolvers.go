@@ -6,7 +6,6 @@ package graph
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/solkarim91/movirank/api/graph/model"
 )
@@ -53,7 +52,7 @@ func (r *mutationResolver) UpdateMovie(ctx context.Context, input model.UpdateMo
 
 // CreateRating is the resolver for the createRating field.
 func (r *mutationResolver) CreateRating(ctx context.Context, input model.CreateRatingInput) (*model.Rating, error) {
-	rating, err, err2 := r.MovieRepository.CreateRating(&input)
+	rating, err := r.MovieRepository.CreateRating(&input)
 	ratingCreated := &model.Rating{
 		ID:        rating.ID,
 		MovieID:   rating.MovieID,
@@ -65,10 +64,6 @@ func (r *mutationResolver) CreateRating(ctx context.Context, input model.CreateR
 
 	if err != nil {
 		return nil, err
-	}
-
-	if err2 != nil {
-		return nil, err2
 	}
 
 	return ratingCreated, nil
@@ -122,7 +117,25 @@ func (r *queryResolver) GetOneMovie(ctx context.Context, id string) (*model.Movi
 
 // GetRatingsByMovieID is the resolver for the getRatingsByMovieId field.
 func (r *queryResolver) GetRatingsByMovieID(ctx context.Context, movieID string) ([]*model.Rating, error) {
-	panic(fmt.Errorf("not implemented: GetRatingsByMovieID - getRatingsByMovieId"))
+	ratings, err := r.MovieRepository.GetRatingsByMovieId(movieID)
+	var ratingsByMovieId []*model.Rating
+
+	for _, rating := range ratings {
+		rat := &model.Rating{
+			ID:          rating.ID,
+			MovieID: 		 rating.MovieID,
+			CreatedAt: rating.CreatedAt,
+			UpdatedAt: rating.UpdatedAt,
+			Message: rating.Message,
+			Star: rating.Star,
+		}
+		ratingsByMovieId = append(ratingsByMovieId, rat)
+	}
+
+	if err != nil {
+		return nil, err
+	}
+	return ratingsByMovieId, nil
 }
 
 // Mutation returns MutationResolver implementation.
@@ -133,13 +146,3 @@ func (r *Resolver) Query() QueryResolver { return &queryResolver{r} }
 
 type mutationResolver struct{ *Resolver }
 type queryResolver struct{ *Resolver }
-
-// !!! WARNING !!!
-// The code below was going to be deleted when updating resolvers. It has been copied here so you have
-// one last chance to move it out of harms way if you want. There are two reasons this happens:
-//   - When renaming or deleting a resolver the old code will be put in here. You can safely delete
-//     it when you're done.
-//   - You have helper methods in this file. Move them out to keep these resolver files clean.
-func (r *queryResolver) GetRatings(ctx context.Context) ([]*model.Rating, error) {
-	panic(fmt.Errorf("not implemented: GetRatings - getRatings"))
-}

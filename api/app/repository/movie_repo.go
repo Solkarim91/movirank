@@ -15,7 +15,8 @@ type MovieRepository interface {
 	DeleteMovie(id string) error
 	GetMovie(id string) (*models.Movie, error)
 	GetMovies() ([]*models.Movie, error)
-	CreateRating(ratingInput *model.CreateRatingInput) (*models.Rating, error, error)
+	CreateRating(ratingInput *model.CreateRatingInput) (*models.Rating, error)
+	GetRatingsByMovieId(movieId string) ([]*models.Rating, error)
 }
 
 type MovieService struct {
@@ -47,7 +48,7 @@ func (b *MovieService) CreateMovie(movieInput *model.CreateMovieInput) (*models.
 	return movie, err
 }
 
-func (b *MovieService) CreateRating(ratingInput *model.CreateRatingInput) (*models.Rating, error, error) {
+func (b *MovieService) CreateRating(ratingInput *model.CreateRatingInput) (*models.Rating, error) {
 	movie := &models.Movie{}
 	err := b.Db.Where("id = ?", ratingInput.MovieID).First(movie).Error
 	now := time.Now().UTC()
@@ -63,7 +64,16 @@ func (b *MovieService) CreateRating(ratingInput *model.CreateRatingInput) (*mode
 	movie.Ratings = append(movie.Ratings, &rating)
 
 	err2 := b.Db.Model(movie).Where("id = ?", ratingInput.MovieID).Updates(movie).Error
-	return &rating, err, err2
+
+	if err != nil {
+		return nil, err
+	}
+
+	if err2 != nil {
+		return nil, err2
+	}
+
+	return &rating, nil
 }
 
 func (b *MovieService) UpdateMovie(movieInput *model.UpdateMovieInput) error {
@@ -98,5 +108,10 @@ func (b *MovieService) GetMovies() ([]*models.Movie, error) {
 	movies := []*models.Movie{}
 	err := b.Db.Find(&movies).Error
 	return movies, err
+}
 
+func (b *MovieService) GetRatingsByMovieId(movieId string) ([]*models.Rating, error) {
+	ratings := []*models.Rating{}
+	err := b.Db.Find(&ratings, "movie_id = ?", movieId).Error
+	return ratings, err
 }
