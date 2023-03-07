@@ -30,5 +30,11 @@ func NewConnection(config *Config) (*gorm.DB, error) {
 }
 
 func Migrate(db *gorm.DB) error {
-    return db.AutoMigrate(&models.Movie{})
+    m := []interface{}{
+		&models.Movie{},
+		&models.Rating{},
+	}
+	return db.AutoMigrate(
+		m...,
+	)
 }

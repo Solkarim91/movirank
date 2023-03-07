@@ -8,7 +8,7 @@ import (
 )
 
 type MovieRepository interface {
-	CreateMovie(movieInput *model.MovieInput) (*models.Movie, error)
+	CreateMovie(movieInput *model.CreateMovieInput) (*models.Movie, error)
 	UpdateMovie(movieInput *model.UpdateMovieInput) error
 	DeleteMovie(id string) error
 	GetMovie(id string) (*models.Movie, error)
@@ -27,7 +27,7 @@ func NewMovieService(db *gorm.DB) *MovieService {
 	}
 }
 
-func (b *MovieService) CreateMovie(movieInput *model.MovieInput) (*models.Movie, error) {
+func (b *MovieService) CreateMovie(movieInput *model.CreateMovieInput) (*models.Movie, error) {
 	movie := &models.Movie{
 		ID: 					uuid.New().String(),
 		Title:     		movieInput.Title,
@@ -76,5 +76,4 @@ func (b *MovieService) GetMovies() ([]*models.Movie, error) {
 	movies := []*models.Movie{}
 	err := b.Db.Find(&movies).Error
 	return movies, err
-
 }

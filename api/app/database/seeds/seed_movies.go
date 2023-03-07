@@ -1,13 +1,15 @@
 package seeds
 
 import (
+	"time"
+
 	"github.com/google/uuid"
 	"github.com/solkarim91/movirank/api/app/models"
 	"gorm.io/gorm"
 )
 
-func CreateMovie(db *gorm.DB, id string, title string, description string, director string, cast []string, genre string, runtime float64, released int, img string) error {
-        return db.Create(&models.Movie{ID: id, Title: title, Description: description, Director: director, Cast: cast, Genre: genre, Runtime: runtime, Released: released, Img: img,}).Error
+func CreateMovie(db *gorm.DB, id string, title string, description string, director string, cast []string, genre string, runtime float64, released int, img string, ratings []*models.Rating) error {
+        return db.Create(&models.Movie{ID: id, Title: title, Description: description, Director: director, Cast: cast, Genre: genre, Runtime: runtime, Released: released, Img: img, Ratings: ratings}).Error
 }
 
 func SeedMovies() []Seed {
@@ -28,6 +30,24 @@ func SeedMovies() []Seed {
 								3.21,
 								2003,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/LOTR-ROTK_qer5yo.jpg",
+								[]*models.Rating{
+									{
+										ID: uuid.New().String(),
+										MovieID: "1",
+										CreatedAt: time.Now().UTC(),
+										UpdatedAt: time.Now().UTC(),
+										Message: "Great movie!",
+										Star: 4,
+									},
+									{
+										ID: uuid.New().String(),
+										MovieID: "1",
+										CreatedAt: time.Now().UTC(),
+										UpdatedAt: time.Now().UTC(),
+										Message: "Bad movie!",
+										Star: 2,
+									},
+								},
 							))
 					},
 				},
@@ -45,6 +65,7 @@ func SeedMovies() []Seed {
 								3.14,
 								1997,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676474113/Titanic_i62e7s.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},
@@ -63,6 +84,7 @@ func SeedMovies() []Seed {
 								2.42,
 								2009,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avatar_gqngv2.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},
@@ -81,6 +103,7 @@ func SeedMovies() []Seed {
 								2.18,
 								2015,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/starwars-forceawakens_exrzqf.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},
@@ -99,6 +122,7 @@ func SeedMovies() []Seed {
 								3.01,
 								2019,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/avengers-endgame_jen8hk.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},
@@ -117,6 +141,7 @@ func SeedMovies() []Seed {
 								2.09,
 								2007,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676551286/Knocked_up_ga7ssk.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},
@@ -135,6 +160,7 @@ func SeedMovies() []Seed {
 								2.04,
 								2015,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676474112/jurassic-world_qmf3tg.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},
@@ -153,6 +179,7 @@ func SeedMovies() []Seed {
 								2.14,
 								2013,
 								"https://res.cloudinary.com/domtywpyc/image/upload/v1676551561/Captain_phillips_nexwsm.jpg",
+								[]*models.Rating{},
 							))
 					},
 				},

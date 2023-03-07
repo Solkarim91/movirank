@@ -8,4 +8,5 @@ import "github.com/solkarim91/movirank/api/app/repository"
 
 type Resolver struct {
 	MovieRepository repository.MovieRepository
+	RatingRepository repository.RatingRepository
 }
