@@ -23,11 +23,6 @@ type CreateRatingInput struct {
 	Star    int    `json:"star"`
 }
 
-type DeleteRatingInput struct {
-	ID      string `json:"id"`
-	MovieID string `json:"movieId"`
-}
-
 type Movie struct {
 	ID          string    `json:"id"`
 	Title       string    `json:"title"`
@@ -64,7 +59,6 @@ type UpdateMovieInput struct {
 
 type UpdateRatingInput struct {
 	ID      string `json:"id"`
-	MovieID string `json:"movieId"`
 	Message string `json:"message"`
 	Star    int    `json:"star"`
 }

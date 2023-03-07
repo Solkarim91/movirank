@@ -62,7 +62,9 @@ type ComplexityRoot struct {
 		CreateMovie  func(childComplexity int, input model.CreateMovieInput) int
 		CreateRating func(childComplexity int, input model.CreateRatingInput) int
 		DeleteMovie  func(childComplexity int, id string) int
+		DeleteRating func(childComplexity int, id string) int
 		UpdateMovie  func(childComplexity int, input model.UpdateMovieInput) int
+		UpdateRating func(childComplexity int, input model.UpdateRatingInput) int
 	}
 
 	Query struct {
@@ -86,6 +88,8 @@ type MutationResolver interface {
 	DeleteMovie(ctx context.Context, id string) (string, error)
 	UpdateMovie(ctx context.Context, input model.UpdateMovieInput) (string, error)
 	CreateRating(ctx context.Context, input model.CreateRatingInput) (*model.Rating, error)
+	UpdateRating(ctx context.Context, input model.UpdateRatingInput) (string, error)
+	DeleteRating(ctx context.Context, id string) (string, error)
 }
 type QueryResolver interface {
 	GetMovies(ctx context.Context) ([]*model.Movie, error)
@@ -214,6 +218,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 
 		return e.complexity.Mutation.DeleteMovie(childComplexity, args["id"].(string)), true
 
+	case "Mutation.deleteRating":
+		if e.complexity.Mutation.DeleteRating == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_deleteRating_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.DeleteRating(childComplexity, args["id"].(string)), true
+
 	case "Mutation.updateMovie":
 		if e.complexity.Mutation.UpdateMovie == nil {
 			break
@@ -225,6 +241,18 @@ func (e *executableSchema) Complexity(typeName, field string, childComplexity in
 		}
 
 		return e.complexity.Mutation.UpdateMovie(childComplexity, args["input"].(model.UpdateMovieInput)), true
+
+	case "Mutation.updateRating":
+		if e.complexity.Mutation.UpdateRating == nil {
+			break
+		}
+
+		args, err := ec.field_Mutation_updateRating_args(context.TODO(), rawArgs)
+		if err != nil {
+			return 0, false
+		}
+
+		return e.complexity.Mutation.UpdateRating(childComplexity, args["input"].(model.UpdateRatingInput)), true
 
 	case "Query.getMovies":
 		if e.complexity.Query.GetMovies == nil {
@@ -309,7 +337,6 @@ func (e *executableSchema) Exec(ctx context.Context) graphql.ResponseHandler {
 	inputUnmarshalMap := graphql.BuildUnmarshalerMap(
 		ec.unmarshalInputCreateMovieInput,
 		ec.unmarshalInputCreateRatingInput,
-		ec.unmarshalInputDeleteRatingInput,
 		ec.unmarshalInputUpdateMovieInput,
 		ec.unmarshalInputUpdateRatingInput,
 	)
@@ -436,6 +463,21 @@ func (ec *executionContext) field_Mutation_deleteMovie_args(ctx context.Context,
 	return args, nil
 }
 
+func (ec *executionContext) field_Mutation_deleteRating_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 string
+	if tmp, ok := rawArgs["id"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
+		arg0, err = ec.unmarshalNID2string(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["id"] = arg0
+	return args, nil
+}
+
 func (ec *executionContext) field_Mutation_updateMovie_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
 	var err error
 	args := map[string]interface{}{}
@@ -443,6 +485,21 @@ func (ec *executionContext) field_Mutation_updateMovie_args(ctx context.Context,
 	if tmp, ok := rawArgs["input"]; ok {
 		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
 		arg0, err = ec.unmarshalNUpdateMovieInput2githubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUpdateMovieInput(ctx, tmp)
+		if err != nil {
+			return nil, err
+		}
+	}
+	args["input"] = arg0
+	return args, nil
+}
+
+func (ec *executionContext) field_Mutation_updateRating_args(ctx context.Context, rawArgs map[string]interface{}) (map[string]interface{}, error) {
+	var err error
+	args := map[string]interface{}{}
+	var arg0 model.UpdateRatingInput
+	if tmp, ok := rawArgs["input"]; ok {
+		ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("input"))
+		arg0, err = ec.unmarshalNUpdateRatingInput2githubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUpdateRatingInput(ctx, tmp)
 		if err != nil {
 			return nil, err
 		}
@@ -1231,6 +1288,114 @@ func (ec *executionContext) fieldContext_Mutation_createRating(ctx context.Conte
 	}()
 	ctx = graphql.WithFieldContext(ctx, fc)
 	if fc.Args, err = ec.field_Mutation_createRating_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Mutation_updateRating(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Mutation_updateRating(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().UpdateRating(rctx, fc.Args["input"].(model.UpdateRatingInput))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Mutation_updateRating(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Mutation",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Mutation_updateRating_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
+		ec.Error(ctx, err)
+		return
+	}
+	return fc, nil
+}
+
+func (ec *executionContext) _Mutation_deleteRating(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
+	fc, err := ec.fieldContext_Mutation_deleteRating(ctx, field)
+	if err != nil {
+		return graphql.Null
+	}
+	ctx = graphql.WithFieldContext(ctx, fc)
+	defer func() {
+		if r := recover(); r != nil {
+			ec.Error(ctx, ec.Recover(ctx, r))
+			ret = graphql.Null
+		}
+	}()
+	resTmp, err := ec.ResolverMiddleware(ctx, func(rctx context.Context) (interface{}, error) {
+		ctx = rctx // use context from middleware stack in children
+		return ec.resolvers.Mutation().DeleteRating(rctx, fc.Args["id"].(string))
+	})
+	if err != nil {
+		ec.Error(ctx, err)
+	}
+	if resTmp == nil {
+		if !graphql.HasFieldError(ctx, fc) {
+			ec.Errorf(ctx, "must not be null")
+		}
+		return graphql.Null
+	}
+	res := resTmp.(string)
+	fc.Result = res
+	return ec.marshalNString2string(ctx, field.Selections, res)
+}
+
+func (ec *executionContext) fieldContext_Mutation_deleteRating(ctx context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
+	fc = &graphql.FieldContext{
+		Object:     "Mutation",
+		Field:      field,
+		IsMethod:   true,
+		IsResolver: true,
+		Child: func(ctx context.Context, field graphql.CollectedField) (*graphql.FieldContext, error) {
+			return nil, errors.New("field of type String does not have child fields")
+		},
+	}
+	defer func() {
+		if r := recover(); r != nil {
+			err = ec.Recover(ctx, r)
+			ec.Error(ctx, err)
+		}
+	}()
+	ctx = graphql.WithFieldContext(ctx, fc)
+	if fc.Args, err = ec.field_Mutation_deleteRating_args(ctx, field.ArgumentMap(ec.Variables)); err != nil {
 		ec.Error(ctx, err)
 		return
 	}
@@ -3738,42 +3903,6 @@ func (ec *executionContext) unmarshalInputCreateRatingInput(ctx context.Context,
 	return it, nil
 }
 
-func (ec *executionContext) unmarshalInputDeleteRatingInput(ctx context.Context, obj interface{}) (model.DeleteRatingInput, error) {
-	var it model.DeleteRatingInput
-	asMap := map[string]interface{}{}
-	for k, v := range obj.(map[string]interface{}) {
-		asMap[k] = v
-	}
-
-	fieldsInOrder := [...]string{"id", "movieId"}
-	for _, k := range fieldsInOrder {
-		v, ok := asMap[k]
-		if !ok {
-			continue
-		}
-		switch k {
-		case "id":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
-			it.ID, err = ec.unmarshalNID2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "movieId":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("movieId"))
-			it.MovieID, err = ec.unmarshalNID2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		}
-	}
-
-	return it, nil
-}
-
 func (ec *executionContext) unmarshalInputUpdateMovieInput(ctx context.Context, obj interface{}) (model.UpdateMovieInput, error) {
 	var it model.UpdateMovieInput
 	asMap := map[string]interface{}{}
@@ -3873,7 +4002,7 @@ func (ec *executionContext) unmarshalInputUpdateRatingInput(ctx context.Context,
 		asMap[k] = v
 	}
 
-	fieldsInOrder := [...]string{"id", "movieId", "message", "star"}
+	fieldsInOrder := [...]string{"id", "message", "star"}
 	for _, k := range fieldsInOrder {
 		v, ok := asMap[k]
 		if !ok {
@@ -3885,14 +4014,6 @@ func (ec *executionContext) unmarshalInputUpdateRatingInput(ctx context.Context,
 
 			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("id"))
 			it.ID, err = ec.unmarshalNID2string(ctx, v)
-			if err != nil {
-				return it, err
-			}
-		case "movieId":
-			var err error
-
-			ctx := graphql.WithPathContext(ctx, graphql.NewPathWithField("movieId"))
-			it.MovieID, err = ec.unmarshalNID2string(ctx, v)
 			if err != nil {
 				return it, err
 			}
@@ -4054,6 +4175,18 @@ func (ec *executionContext) _Mutation(ctx context.Context, sel ast.SelectionSet)
 
 			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
 				return ec._Mutation_createRating(ctx, field)
+			})
+
+		case "updateRating":
+
+			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
+				return ec._Mutation_updateRating(ctx, field)
+			})
+
+		case "deleteRating":
+
+			out.Values[i] = ec.OperationContext.RootResolverMiddleware(innerCtx, func(ctx context.Context) (res graphql.Marshaler) {
+				return ec._Mutation_deleteRating(ctx, field)
 			})
 
 		default:
@@ -4761,6 +4894,11 @@ func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel as
 
 func (ec *executionContext) unmarshalNUpdateMovieInput2githubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUpdateMovieInput(ctx context.Context, v interface{}) (model.UpdateMovieInput, error) {
 	res, err := ec.unmarshalInputUpdateMovieInput(ctx, v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) unmarshalNUpdateRatingInput2githubᚗcomᚋsolkarim91ᚋmovirankᚋapiᚋgraphᚋmodelᚐUpdateRatingInput(ctx context.Context, v interface{}) (model.UpdateRatingInput, error) {
+	res, err := ec.unmarshalInputUpdateRatingInput(ctx, v)
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 

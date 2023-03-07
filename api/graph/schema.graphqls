@@ -11,6 +11,8 @@ type Mutation {
   deleteMovie(id: ID!): String!
   updateMovie(input: UpdateMovieInput!): String!
   createRating(input: CreateRatingInput!): Rating!
+  updateRating(input: UpdateRatingInput!): String!
+  deleteRating(id: ID!): String!
 }
 
 type Movie {
@@ -66,12 +68,6 @@ input CreateRatingInput {
 
 input UpdateRatingInput {
   id: ID!
-  movieId: ID!
   message: String!
   star: Int!
-}
-
-input DeleteRatingInput {
-  id: ID!
-  movieId: ID!
 }

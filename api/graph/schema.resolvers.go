@@ -69,6 +69,26 @@ func (r *mutationResolver) CreateRating(ctx context.Context, input model.CreateR
 	return ratingCreated, nil
 }
 
+// UpdateRating is the resolver for the updateRating field.
+func (r *mutationResolver) UpdateRating(ctx context.Context, input model.UpdateRatingInput) (string, error) {
+	err := r.MovieRepository.UpdateRating(&input)
+	if err != nil {
+		return "", err
+	}
+	successMessage := "successfully updated"
+	return successMessage, nil
+}
+
+// DeleteRating is the resolver for the deleteRating field.
+func (r *mutationResolver) DeleteRating(ctx context.Context, id string) (string, error) {
+	err := r.MovieRepository.DeleteRating(id)
+	if err != nil {
+		return "", err
+	}
+	successMessage := "successfully deleted"
+	return successMessage, nil
+}
+
 // GetMovies is the resolver for the getMovies field.
 func (r *queryResolver) GetMovies(ctx context.Context) ([]*model.Movie, error) {
 	movies, err := r.MovieRepository.GetMovies()
@@ -122,12 +142,12 @@ func (r *queryResolver) GetRatingsByMovieID(ctx context.Context, movieID string)
 
 	for _, rating := range ratings {
 		rat := &model.Rating{
-			ID:          rating.ID,
-			MovieID: 		 rating.MovieID,
+			ID:        rating.ID,
+			MovieID:   rating.MovieID,
 			CreatedAt: rating.CreatedAt,
 			UpdatedAt: rating.UpdatedAt,
-			Message: rating.Message,
-			Star: rating.Star,
+			Message:   rating.Message,
+			Star:      rating.Star,
 		}
 		ratingsByMovieId = append(ratingsByMovieId, rat)
 	}
