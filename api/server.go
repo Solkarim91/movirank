@@ -52,7 +52,8 @@ func main() {
         port = defaultPort
     }
 
-    repo := repository.NewMovieService(db)
+    movieRepo := repository.NewMovieService(db)
+    ratingRepo := repository.NewRatingService(db)
 
     // UNCOMMENT BELOW TO SEED DATABASE ON SERVER START:
     
@@ -63,7 +64,8 @@ func main() {
 	// }
 
     srv := handler.NewDefaultServer(graph.NewExecutableSchema(graph.Config{Resolvers: &graph.Resolver{
-        MovieRepository: repo,
+        MovieRepository: movieRepo,
+        RatingRepository: ratingRepo,
     }}))
 
     http.Handle("/graphql", playground.Handler("GraphQL playground", "/query"))    
