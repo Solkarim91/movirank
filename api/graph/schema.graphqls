@@ -1,36 +1,16 @@
-enum UserType {
-  ADMIN
-  STANDARD
-}
+scalar Time
 
 type Query {
   getMovies: [Movie!]!
   getOneMovie(id: ID!): Movie!
+  getRatingsByMovieId(movieId: ID!): [Rating!]!
 }
 
 type Mutation {
-  createMovie(input: MovieInput!): Movie!
+  createMovie(input: CreateMovieInput!): Movie!
   deleteMovie(id: ID!): String!
   updateMovie(input: UpdateMovieInput!): String!
-}
-
-type User {
-  id: ID!
-  userType: UserType!
-  username: String!
-  email: String!
-}
-
-type Comment {
-  id: ID!
-  user: User!
-  text: String!
-}
-
-type Rating {
-  id: ID!
-  user: User!
-  star: Int!
+  createRating(input: CreateRatingInput!): Rating!
 }
 
 type Movie {
@@ -43,9 +23,10 @@ type Movie {
   runtime: Float!
   released: Int!
   img: String!
+  ratings: [Rating!]!
 }
 
-input MovieInput {
+input CreateMovieInput {
   title: String!
   description: String!
   director: String!
@@ -66,4 +47,31 @@ input UpdateMovieInput {
   runtime: Float!
   released: Int!
   img: String!
+}
+
+type Rating {
+  id: ID!
+  movieId: ID!
+  createdAt: Time!
+  updatedAt: Time!
+  message: String!
+  star: Int!
+}
+
+input CreateRatingInput {
+  movieId: ID!
+  message: String!
+  star: Int!
+}
+
+input UpdateRatingInput {
+  id: ID!
+  movieId: ID!
+  message: String!
+  star: Int!
+}
+
+input DeleteRatingInput {
+  id: ID!
+  movieId: ID!
 }
