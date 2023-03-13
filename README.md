@@ -16,6 +16,6 @@ You can start editing the page by modifying `pages/movies/index.tsx`.
 
 ## Running the GraphQL server
 
-From your terminal, move into the `api` directory & run the command 'go run server.go', in order to run the server.
+From your terminal, move into the `api` directory & run the command `go run server.go`, in order to run the server.
 
 Open [http://localhost:8080/graphql](http://localhost:8080/graphql) in your browser to use the GraphQL playground environment. 
